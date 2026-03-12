@@ -20,7 +20,7 @@
     <!-- Navigation -->
     <nav class="navbar">
         <div class="logo">MAS.</div>
-        <div class="nav-links">
+        <div class="nav-links" id="nav-links">
             <a href="#about" class="nav-link"><span>01.</span> WHO</a>
             <a href="#projects" class="nav-link"><span>02.</span> WORK</a>
             <a href="#experience" class="nav-link"><span>03.</span> PATH</a>
@@ -29,11 +29,12 @@
         <button id="theme-toggle" aria-label="Toggle Theme">
             <i class="fas fa-moon"></i>
         </button>
-        <div class="hamburger">
+        <button class="hamburger" id="menu-toggle" aria-label="Open navigation menu" aria-expanded="false" aria-controls="nav-links">
             <span></span>
             <span></span>
-        </div>
+        </button>
     </nav>
+    <div class="nav-overlay" id="nav-overlay" aria-hidden="true"></div>
 
     <main>
         <!-- Hero Section -->
@@ -61,21 +62,22 @@
         <section id="about" class="section about-section">
             <div class="section-header">
                 <span class="section-number">01</span>
-                <h2 class="section-title">THE ARCHITECT</h2>
+                <h2 class="section-title">ABOUT ME</h2>
             </div>
             <div class="about-grid">
                 <div class="about-text">
                     <p class="large-text">
-                        Computer Science Student at <span class="highlight">KFUPM</span>. 
-                        Obsessed with <span class="highlight">AI</span> & <span class="highlight">Deep Learning</span>.
+                        Computer Science Student at <span class="highlight">KFUPM</span>.<br>
+                        Obsessed with<br>
+                        <span class="highlight">AI</span> & <span class="highlight">Deep Learning</span>.
                     </p>
                     <p>
                         I don't just write code; I build solutions that think. From Comparison Engines for Jarir to Computer Vision pipelines, I turn data into action.
                     </p>
                     <div class="stats-container">
                         <div class="stat-item">
-                            <span class="stat-number">3.9</span>
-                            <span class="stat-label">GPA</span>
+                            <span class="stat-number">AI</span>
+                            <span class="stat-label">Aspiring Engineer</span>
                         </div>
                         <div class="stat-item">
                             <span class="stat-number">4+</span>
@@ -90,14 +92,26 @@
                 <div class="tech-stack-ticker">
                     <div class="ticker-wrap">
                         <div class="ticker-move">
-                            <div class="ticker-item">PYTHON</div>
-                            <div class="ticker-item">PYTORCH</div>
-                            <div class="ticker-item">NEXT.JS</div>
-                            <div class="ticker-item">FASTAPI</div>
-                            <div class="ticker-item">TYPESCRIPT</div>
-                            <div class="ticker-item">LANGCHAIN</div>
-                            <div class="ticker-item">OPENCV</div>
-                            <div class="ticker-item">MEDIAPIPE</div>
+                            <div class="ticker-group">
+                                <div class="ticker-item">PYTHON</div>
+                                <div class="ticker-item">PYTORCH</div>
+                                <div class="ticker-item">NEXT.JS</div>
+                                <div class="ticker-item">FASTAPI</div>
+                                <div class="ticker-item">TYPESCRIPT</div>
+                                <div class="ticker-item">LANGCHAIN</div>
+                                <div class="ticker-item">OPENCV</div>
+                                <div class="ticker-item">MEDIAPIPE</div>
+                            </div>
+                            <div class="ticker-group" aria-hidden="true">
+                                <div class="ticker-item">PYTHON</div>
+                                <div class="ticker-item">PYTORCH</div>
+                                <div class="ticker-item">NEXT.JS</div>
+                                <div class="ticker-item">FASTAPI</div>
+                                <div class="ticker-item">TYPESCRIPT</div>
+                                <div class="ticker-item">LANGCHAIN</div>
+                                <div class="ticker-item">OPENCV</div>
+                                <div class="ticker-item">MEDIAPIPE</div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -110,66 +124,31 @@
                 <span class="section-number">02</span>
                 <h2 class="section-title">SELECTED WORKS</h2>
             </div>
-            <div class="projects-container">
-                <!-- Project 1 -->
-                <article class="project-card" data-tilt>
-                    <div class="project-content">
-                        <h3 class="project-title">AI SALESMAN</h3>
-                        <p class="project-role">KAUST Academy × Jarir</p>
-                        <p class="project-desc">Browser extension comparing 500+ products via chat. RAG pipeline with comparison logic.</p>
-                        <ul class="project-tags">
-                            <li>LangChain</li>
-                            <li>FastAPI</li>
-                            <li>React</li>
-                        </ul>
-                    </div>
-                    <div class="project-visual p1-visual"></div>
-                </article>
 
-                <!-- Project 2 -->
-                <article class="project-card" data-tilt>
-                    <div class="project-content">
-                        <h3 class="project-title">QUDRAT PREP</h3>
-                        <p class="project-role">Full Stack Platform</p>
-                        <p class="project-desc">Exam prep with Vertex AI to regenerate math figures from images. Habit-driven learning dashboards.</p>
-                        <ul class="project-tags">
-                            <li>Next.js</li>
-                            <li>Supabase</li>
-                            <li>Vertex AI</li>
-                        </ul>
-                    </div>
-                    <div class="project-visual p2-visual"></div>
-                </article>
+            <!-- Project Explorer Controls (Assignment 2) -->
+            <div class="project-controls" role="search" aria-label="Filter projects">
+                <div class="search-wrap">
+                    <i class="fas fa-search search-icon" aria-hidden="true"></i>
+                    <input type="search" id="project-search" placeholder="Search projects or technologies..." aria-label="Search projects">
+                </div>
+                <div class="filter-chips" role="group" aria-label="Filter by category">
+                    <button type="button" class="filter-chip active" data-filter="all">All</button>
+                    <button type="button" class="filter-chip" data-filter="ai">AI / ML</button>
+                    <button type="button" class="filter-chip" data-filter="fullstack">Full Stack</button>
+                    <button type="button" class="filter-chip" data-filter="cv">Computer Vision</button>
+                    <button type="button" class="filter-chip" data-filter="research">Research</button>
+                    <button type="button" class="filter-chip" data-filter="rl">RL</button>
+                </div>
+            </div>
 
-                <!-- Project 3 -->
-                <article class="project-card" data-tilt>
-                    <div class="project-content">
-                        <h3 class="project-title">CANDID CAM</h3>
-                        <p class="project-role">Computer Vision</p>
-                        <p class="project-desc">Real-time face matching in 4,000+ image collections with <1s response time.</p>
-                        <ul class="project-tags">
-                            <li>MediaPipe</li>
-                            <li>Dlib</li>
-                            <li>Python</li>
-                        </ul>
-                    </div>
-                    <div class="project-visual p3-visual"></div>
-                </article>
+            <!-- Cards rendered by JS -->
+            <div class="projects-container" id="projectsGrid" aria-live="polite" aria-atomic="false"></div>
 
-                <!-- Project 4 -->
-                <article class="project-card" data-tilt>
-                    <div class="project-content">
-                        <h3 class="project-title">RL ANTI-JAMMING</h3>
-                        <p class="project-role">Research @ KFUPM</p>
-                        <p class="project-desc">Deep Reinforcement Learning applied to wireless communications security.</p>
-                        <ul class="project-tags">
-                            <li>PyTorch</li>
-                            <li>RL</li>
-                            <li>Python</li>
-                        </ul>
-                    </div>
-                    <div class="project-visual p4-visual"></div>
-                </article>
+            <!-- Empty state -->
+            <div class="projects-empty" id="projectsEmpty" hidden>
+                <i class="fas fa-search-minus" aria-hidden="true"></i>
+                <p>No projects match your search.</p>
+                <button type="button" class="reset-filters-btn">Clear filters</button>
             </div>
         </section>
 
@@ -191,9 +170,9 @@
                 <div class="timeline-item">
                     <div class="timeline-date">2025</div>
                     <div class="timeline-content">
-                        <h3>AI Summer Scholar</h3>
-                        <h4>KAUST</h4>
-                        <p>Selected top 1% (100/10k). Intensive 8-week research in NLP & RL.</p>
+                        <h3>AI Summer Student</h3>
+                        <h4>KAUST Academy</h4>
+                        <p>Intensive 8-week program exploring advanced topics in NLP, RL, and Computer Vision.</p>
                     </div>
                 </div>
                 <div class="timeline-item">
@@ -201,7 +180,7 @@
                     <div class="timeline-content">
                         <h3>BS Computer Science</h3>
                         <h4>KFUPM</h4>
-                        <p>Started journey. Dean's List 2025. GPA: 3.90/4.</p>
+                        <p>Started journey. Dean's List 2025.</p>
                     </div>
                 </div>
             </div>
@@ -211,32 +190,37 @@
         <section id="contact" class="section contact-section">
             <div class="section-header">
                 <span class="section-number">04</span>
-                <h2 class="section-title">INITIATE</h2>
+                <h2 class="section-title">CONTACT</h2>
             </div>
             <div class="contact-container">
-                <form class="contact-form" id="contactForm">
+                <form class="contact-form" id="contactForm" novalidate>
                     <div class="form-group">
-                        <input type="text" id="name" required placeholder=" ">
+                        <input type="text" id="name" name="name" required placeholder=" " autocomplete="name">
                         <label for="name">NAME</label>
+                        <span class="field-error" id="name-error" role="alert"></span>
                     </div>
                     <div class="form-group">
-                        <input type="email" id="email" required placeholder=" ">
+                        <input type="email" id="email" name="email" required placeholder=" " autocomplete="email">
                         <label for="email">EMAIL</label>
+                        <span class="field-error" id="email-error" role="alert"></span>
                     </div>
                     <div class="form-group">
-                        <textarea id="message" required placeholder=" "></textarea>
-                        <label for="message">DATA PACKET</label>
+                        <textarea id="message" name="message" required placeholder=" " maxlength="500"></textarea>
+                        <label for="message">MESSAGE</label>
+                        <span class="char-counter" id="char-counter" aria-live="polite">0 / 500</span>
+                        <span class="field-error" id="message-error" role="alert"></span>
                     </div>
+                    <div class="form-status" id="formStatus" role="status" aria-live="polite" hidden></div>
                     <button type="submit" class="submit-btn">
-                        <span class="btn-text">TRANSMIT</span>
+                        <span class="btn-text">SEND</span>
                         <div class="btn-bg"></div>
                     </button>
                 </form>
                 <div class="contact-info">
                     <a href="mailto:ammar2005sohail@gmail.com" class="contact-link">ammar2005sohail@gmail.com</a>
                     <div class="social-links">
-                        <a href="#" class="social-icon"><i class="fab fa-github"></i></a>
-                        <a href="#" class="social-icon"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://github.com/mar5-a" class="social-icon" target="_blank" rel="noopener noreferrer" aria-label="GitHub profile"><i class="fab fa-github" aria-hidden="true"></i></a>
+                        <a href="https://www.linkedin.com/in/muhammad-ammar-sohail/" class="social-icon" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile"><i class="fab fa-linkedin" aria-hidden="true"></i></a>
                     </div>
                 </div>
             </div>
